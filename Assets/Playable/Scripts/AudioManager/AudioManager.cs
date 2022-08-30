@@ -56,13 +56,13 @@ public class AudioManager : MonoBehaviour
 		if (GUIManagerPLY3.Instance.clickCnt == 1)
             Invoke(nameof(SecondClick), s.source.clip.length + 1f);
 		if (GUIManagerPLY3.Instance.clickCnt == 2)
-			Invoke(nameof(ShowEndCard), s.source.clip.length + 1f);
+			Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
 
 	}
 
     void ShowEndCard()
     {
-        GUIManagerPLY3.Instance.ShowEndCard();
+        GUIManagerPLY3.Instance.ShowEndCard1();
     }
 	void SecondClick()
     {

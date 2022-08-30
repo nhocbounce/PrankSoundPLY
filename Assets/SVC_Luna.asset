@@ -314,18 +314,6 @@ MonoBehaviour:
     - UNITY_UI_ALPHACLIP
     - UNITY_UI_CLIP_RECT
   _usedByLunaBuild:
-  - shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 1
-    keywords: []
-  - shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-    passType: 0
-    passId: 0
-    subShaderIndex: 0
-    upToDate: 1
-    keywords: []
   - shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
     passType: 4
     passId: 0
@@ -334,9 +322,21 @@ MonoBehaviour:
     keywords:
     - DIRECTIONAL
     - LIGHTPROBE_SH
+  - shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords: []
+  - shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
+    passType: 0
+    passId: 0
+    subShaderIndex: 0
+    upToDate: 0
+    keywords: []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 699
+  version: 242
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0

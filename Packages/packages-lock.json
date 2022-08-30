@@ -98,7 +98,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.14",
+      "version": "2.0.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -171,7 +171,7 @@
       }
     },
     "uk.lunalabs.luna": {
-      "version": "file:../../ɀPlayableResources/LunaVer/3.12.0/scripts",
+      "version": "file:../../ɀResources/ɀPlayableResources/LunaVer/3.12.0/scripts",
       "depth": 0,
       "source": "local",
       "dependencies": {}

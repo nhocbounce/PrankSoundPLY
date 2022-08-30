@@ -39,7 +39,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     //Object Changed when rotate
     [SerializeField]
-    DualObject canVas, hand, whu, ta;
+    DualObject canVas, hand, whu, ta,zz;
 
     [SerializeField]
     Animator verti, hori;
@@ -152,8 +152,9 @@ public class GUIManagerPLY3 : MonoBehaviour
         once = true;
         if(clickCnt == 2)
         {
-            CancelInvoke(nameof(ShowEndCard1));
-            ShowEndCard1();
+            ta.curState = false;
+            Invoke(nameof(WakeUp), 1.5f);
+            //ShowEndCard1();
         }
         if (clickCnt == 3)
         {
@@ -161,22 +162,30 @@ public class GUIManagerPLY3 : MonoBehaviour
             ShowEndCard1();
         }
         whu.curState = false;
-
     }
+
+    void WakeUp()
+    {
+        second = true;
+        zz.curState = false;
+    }
+
 
     public void SecondClick()
     {
         AudioManager.Instance.Play("BG");
+
         Invoke(nameof(NewTxt), 0.5f);
-        second = true;
         for (int i = 0; i < btns.Length; i++)
             if (i == clickNum - 1)
+            {
                 btns[i].curState = false;
+            }
+
     }
 
     void NewTxt()
     {
-
         ta.curState = true;
     }
 
@@ -211,9 +220,16 @@ public class GUIManagerPLY3 : MonoBehaviour
         clickNum = button;
         for (int i = 0; i < btns.Length; i++)
             if (i == button - 1)
+            {
                 btns[i].curState = true;
+
+            }
             else
+            {
+                btns[i].verti.gameObject.transform.localScale = Vector3.one;
+                btns[i].hori.gameObject.transform.localScale = Vector3.one * 3.8f;
                 btns[i].curState = false;
+            }
     }
 
 
@@ -244,6 +260,7 @@ public class GUIManagerPLY3 : MonoBehaviour
         PanelOnOff.Dual(hand);
         PanelOnOff.Dual(whu);
         PanelOnOff.Dual(ta);
+        PanelOnOff.Dual(zz);
 
         //DualAnimator
         for (int i = 0; i < btns.Length; i++)
@@ -275,6 +292,7 @@ public class GUIManagerPLY3 : MonoBehaviour
         hand.InitCurState();
         whu.InitCurState();
         ta.InitCurState();
+        zz.InitCurState();
     }
 
 }

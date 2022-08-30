@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Playable/Scenes/PLY3.unity
     guid: 7a5d2a8fb7ceabf499e72dc33a3040b4
+  - enabled: 1
+    path: 
+    guid: c2e524509eb23e943a0fb43bb7da0d9d
+  - enabled: 1
+    path: Assets/Playable/Scenes/PLY4.unity
+    guid: 7ffb4ea0c2067a14996631c15a25720d
   m_configObjects: {}
