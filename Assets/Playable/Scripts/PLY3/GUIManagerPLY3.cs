@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using Luna.Unity;
 using System;
+using UnityEngine.Video;
 
-public class GUIManager : MonoBehaviour
+public class GUIManagerPLY3 : MonoBehaviour
 {
 
-    private static GUIManager instance;
+    private static GUIManagerPLY3 instance;
 
-    public static GUIManager Instance
+    public static GUIManagerPLY3 Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<GUIManager>();
+                instance = FindObjectOfType<GUIManagerPLY3>();
             }
 
             return instance;
@@ -26,18 +27,24 @@ public class GUIManager : MonoBehaviour
     [SerializeField]
     Camera mainCam;
 
+    [SerializeField]
+    VideoPlayer videoPlayer;
+
+    [SerializeField]
+    VideoClip[] videoClips;
+
     //Object Unchanged when rotate
     [SerializeField]
     GameObject endCard;
 
     //Object Changed when rotate
     [SerializeField]
-    DualObject canVas, hand;
+    DualObject canVas, hand, whu, ta;
 
     [SerializeField]
     Animator verti, hori;
 
-    bool isHor, rotateScreen = false;
+    bool isHor, rotateScreen, second;
 
     [SerializeField]
     DualAnimator[] btns;
@@ -80,6 +87,7 @@ public class GUIManager : MonoBehaviour
             mainCam.orthographicSize = verticalCameraSize;
         }
         Adjust();
+        VideoAdjust();
 
         //BGSound
         AudioManager.Instance.Play("BG");
@@ -129,6 +137,7 @@ public class GUIManager : MonoBehaviour
             }
         }
         Adjust();
+        VideoAdjust();
     }
 
     public void SoundClicked(string soundName)
@@ -144,24 +153,31 @@ public class GUIManager : MonoBehaviour
         if(clickCnt == 2)
         {
             CancelInvoke(nameof(ShowEndCard1));
+            ShowEndCard1();
         }
         if (clickCnt == 3)
         {
             clicked = true;
             ShowEndCard1();
         }
-
+        whu.curState = false;
 
     }
 
     public void SecondClick()
     {
-        //Invoke(nameof(ShowEndCard1), 5f);
+        AudioManager.Instance.Play("BG");
+        Invoke(nameof(NewTxt), 0.5f);
+        second = true;
         for (int i = 0; i < btns.Length; i++)
             if (i == clickNum - 1)
                 btns[i].curState = false;
-            //else
-            //    btns[i].curState = true;
+    }
+
+    void NewTxt()
+    {
+
+        ta.curState = true;
     }
 
     public void FireEvent(string eventName)
@@ -171,6 +187,7 @@ public class GUIManager : MonoBehaviour
 
     public void ShowEndCard()
     {
+        AudioManager.Instance.Play("BG");
         //Prevent this script run 2 time because of AudioManager.ShowEndcard
         if (!clicked)
         {
@@ -225,42 +242,65 @@ public class GUIManager : MonoBehaviour
 
         //DualObjects Rotate Handler
         PanelOnOff.Dual(hand);
+        PanelOnOff.Dual(whu);
+        PanelOnOff.Dual(ta);
 
         //DualAnimator
         for (int i = 0; i < btns.Length; i++)
             btns[i].Play();
     }
 
+
+    void VideoAdjust()
+    {
+        if (isHor)
+        {
+            if (second)
+                videoPlayer.clip = videoClips[3];
+            else
+                videoPlayer.clip = videoClips[1];
+        }
+        else
+        {
+            if (second)
+                videoPlayer.clip = videoClips[2];
+            else
+                videoPlayer.clip = videoClips[0];
+        }
+    }
+
     void InitState()
     {
         //Init State of DualObjects
         hand.InitCurState();
+        whu.InitCurState();
+        ta.InitCurState();
     }
 
 }
 
-//[Serializable]
-//public class DualObject
-//{
-//    public GameObject verti, hori;
-//    [HideInInspector]
-//    public bool curState;
+[Serializable]
+public class DualObject
+{
+    public GameObject verti, hori;
+    [HideInInspector]
+    public bool curState;
     
-//    public void InitCurState()
-//    {
-//        curState = verti.activeSelf;
-//    }
-//}
-//[Serializable]
-//public class DualAnimator
-//{
-//    public Animator verti, hori;
-//    [HideInInspector]
-//    public bool curState;
+    public void InitCurState()
+    {
+        curState = verti.activeSelf;
+    }
+}
+[Serializable]
+public class DualAnimator
+{
+    public Animator verti, hori;
+    [HideInInspector]
+    public bool curState;
 
-//    public void Play()
-//    {
-//        hori.SetBool("Clicked", curState);
-//        verti.SetBool("Clicked", curState);
-//    }
-//}
+    public void Play()
+    {
+        hori.SetBool("ClickedHori", curState);
+        verti.SetBool("Clicked", curState);
+    }
+}

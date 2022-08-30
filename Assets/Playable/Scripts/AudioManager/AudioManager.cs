@@ -53,29 +53,20 @@ public class AudioManager : MonoBehaviour
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
 		s.source.Play();
-		if (GUIManager.Instance.clickCnt == 1)
+		if (GUIManagerPLY3.Instance.clickCnt == 1)
             Invoke(nameof(SecondClick), s.source.clip.length + 1f);
-		if (GUIManager.Instance.clickCnt == 2)
+		if (GUIManagerPLY3.Instance.clickCnt == 2)
 			Invoke(nameof(ShowEndCard), s.source.clip.length + 1f);
 
 	}
 
-    //2 sounds require Ver
-    //void SecondClick()
-    //   {
-
-    //   }
-
-
-
-    //SuperShortVer
     void ShowEndCard()
     {
-        GUIManager.Instance.ShowEndCard();
+        GUIManagerPLY3.Instance.ShowEndCard();
     }
 	void SecondClick()
     {
-        GUIManager.Instance.SecondClick();
+        GUIManagerPLY3.Instance.SecondClick();
     }
     public void Stop(string sound)
 	{
