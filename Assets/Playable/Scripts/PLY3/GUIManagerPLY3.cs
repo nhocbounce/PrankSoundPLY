@@ -150,6 +150,8 @@ public class GUIManagerPLY3 : MonoBehaviour
         AudioManager.Instance.AfterPlay(soundName);
         FireEvent(soundName + " clicked");
         once = true;
+
+        //PLY4
         if(clickCnt == 2)
         {
             ta.curState = false;
@@ -162,6 +164,20 @@ public class GUIManagerPLY3 : MonoBehaviour
             ShowEndCard1();
         }
         whu.curState = false;
+
+        //PLY3
+        //if (clickCnt == 1)
+        //{
+        //    ta.curState = false;
+        //    Invoke(nameof(WakeUp), 1.5f);
+        //    //ShowEndCard1();
+        //}
+        //if (clickCnt == 2)
+        //{
+        //    clicked = true;
+        //    ShowEndCard1();
+        //}
+        //whu.curState = false;
     }
 
     void WakeUp()
@@ -297,28 +313,28 @@ public class GUIManagerPLY3 : MonoBehaviour
 
 }
 
-[Serializable]
-public class DualObject
-{
-    public GameObject verti, hori;
-    [HideInInspector]
-    public bool curState;
+//[Serializable]
+//public class DualObject
+//{
+//    public GameObject verti, hori;
+//    [HideInInspector]
+//    public bool curState;
     
-    public void InitCurState()
-    {
-        curState = verti.activeSelf;
-    }
-}
-[Serializable]
-public class DualAnimator
-{
-    public Animator verti, hori;
-    [HideInInspector]
-    public bool curState;
+//    public void InitCurState()
+//    {
+//        curState = verti.activeSelf;
+//    }
+//}
+//[Serializable]
+//public class DualAnimator
+//{
+//    public Animator verti, hori;
+//    [HideInInspector]
+//    public bool curState;
 
-    public void Play()
-    {
-        hori.SetBool("ClickedHori", curState);
-        verti.SetBool("Clicked", curState);
-    }
-}
+//    public void Play()
+//    {
+//        hori.SetBool("ClickedHori", curState);
+//        verti.SetBool("Clicked", curState);
+//    }
+//}

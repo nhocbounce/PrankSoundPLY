@@ -141,15 +141,25 @@ public class GUIManager : MonoBehaviour
         AudioManager.Instance.AfterPlay(soundName);
         FireEvent(soundName + " clicked");
         once = true;
-        if(clickCnt == 2)
+
+        #region LongVer
+        //if (clickCnt == 2)
+        //{
+        //    CancelInvoke(nameof(ShowEndCard1));
+        //}
+        //if (clickCnt == 3)
+        //{
+        //    clicked = true;
+        //    ShowEndCard1();
+        //}
+        #endregion
+
+        #region ShortVer
+        if (clickCnt == 2)
         {
-            CancelInvoke(nameof(ShowEndCard1));
+            ShowEndCard();
         }
-        if (clickCnt == 3)
-        {
-            clicked = true;
-            ShowEndCard1();
-        }
+        #endregion
 
 
     }
@@ -171,20 +181,18 @@ public class GUIManager : MonoBehaviour
 
     public void ShowEndCard()
     {
-        //Prevent this script run 2 time because of AudioManager.ShowEndcard
-        if (!clicked)
-        {
-            AudioManager.Instance.StopAll();
-            Analytics.LogEvent("EndCard Shown", 0);
-            PanelOnOff.Single(endCard, true);
-            AutoStore();
-
-        }
+        CancelInvoke(nameof(ShowEndCard1));
+        AudioManager.Instance.StopAll();
+        Analytics.LogEvent("EndCard Shown", 0);
+        PanelOnOff.Single(endCard, true);
+        AutoStore();
     }
     public void ShowEndCard1()
     {
+        autoStore = false;
         AudioManager.Instance.StopAll();
         Analytics.LogEvent("EndCard Shown", 0);
+        Analytics.LogEvent("Not Clicked", 0);
         PanelOnOff.Single(endCard, true);
         AutoStore();
     }
@@ -239,28 +247,28 @@ public class GUIManager : MonoBehaviour
 
 }
 
-//[Serializable]
-//public class DualObject
-//{
-//    public GameObject verti, hori;
-//    [HideInInspector]
-//    public bool curState;
-    
-//    public void InitCurState()
-//    {
-//        curState = verti.activeSelf;
-//    }
-//}
-//[Serializable]
-//public class DualAnimator
-//{
-//    public Animator verti, hori;
-//    [HideInInspector]
-//    public bool curState;
+[Serializable]
+public class DualObject
+{
+    public GameObject verti, hori;
+    [HideInInspector]
+    public bool curState;
 
-//    public void Play()
-//    {
-//        hori.SetBool("Clicked", curState);
-//        verti.SetBool("Clicked", curState);
-//    }
-//}
+    public void InitCurState()
+    {
+        curState = verti.activeSelf;
+    }
+}
+[Serializable]
+public class DualAnimator
+{
+    public Animator verti, hori;
+    [HideInInspector]
+    public bool curState;
+
+    public void Play()
+    {
+        hori.SetBool("Clicked", curState);
+        verti.SetBool("Clicked", curState);
+    }
+}

@@ -53,22 +53,54 @@ public class AudioManager : MonoBehaviour
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
 		s.source.Play();
-		if (GUIManagerPLY3.Instance.clickCnt == 1)
-            Invoke(nameof(SecondClick), s.source.clip.length + 1f);
-		if (GUIManagerPLY3.Instance.clickCnt == 2)
-			Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
 
-	}
+        #region PLy4
+        //if (GUIManagerPLY3.Instance.clickCnt == 1)
+        //          Invoke(nameof(SecondClick), s.source.clip.length + 1f);
+        //if (GUIManagerPLY3.Instance.clickCnt == 2)
+        //	Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
+        #endregion
+
+        #region Ply3
+        //if (GUIManagerPLY3.Instance.clickCnt == 1)
+        //	Invoke(nameof(SecondClick), s.source.clip.length + 1f);
+        #endregion
+
+        #region PLy2 Long
+        //if (GUIManager.Instance.clickCnt == 1)
+        //          Invoke(nameof(SecondClick), s.source.clip.length + 1f);
+        //if (GUIManager.Instance.clickCnt == 2)
+        //	Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
+        #endregion
+
+        #region Ply2 Short
+        if (GUIManager.Instance.clickCnt == 1)
+			Invoke(nameof(ShowEndCard), s.source.clip.length + 13f);
+            
+        #endregion
+    }
 
     void ShowEndCard()
     {
-        GUIManagerPLY3.Instance.ShowEndCard1();
+        #region PLy3+Ply4
+        //GUIManagerPLY3.Instance.ShowEndCard1();
+        #endregion
+
+        #region Ply2
+        GUIManager.Instance.ShowEndCard1();
+        #endregion
     }
-	void SecondClick()
+    void SecondClick()
     {
-        GUIManagerPLY3.Instance.SecondClick();
-    }
-    public void Stop(string sound)
+		#region PLy3+Ply4
+		//GUIManagerPLY3.Instance.SecondClick();
+		#endregion
+
+		#region Ply2
+		GUIManager.Instance.SecondClick();
+		#endregion
+	}
+	public void Stop(string sound)
 	{
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
