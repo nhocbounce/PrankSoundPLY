@@ -4819,7 +4819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.9607843}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7446,6 +7446,14 @@ MonoBehaviour:
   ta:
     verti: {fileID: 593276771}
     hori: {fileID: 10503466}
+    curState: 0
+  zz:
+    verti: {fileID: 1823835966}
+    hori: {fileID: 248269601}
+    curState: 0
+  songPan2:
+    verti: {fileID: 0}
+    hori: {fileID: 0}
     curState: 0
   verti: {fileID: 1731205042}
   hori: {fileID: 41180879}

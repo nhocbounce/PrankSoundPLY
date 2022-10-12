@@ -54,12 +54,20 @@ public class AudioManager : MonoBehaviour
 
 		s.source.Play();
 
+		#region PLy5
+        if (GUIManagerPLY3.Instance.clickCnt == 1)
+            Invoke(nameof(SecondClick), s.source.clip.length + 2.5f);
+        //if (GUIManagerPLY3.Instance.clickCnt == 2)
+        //    Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
+        #endregion
+
         #region PLy4
         //if (GUIManagerPLY3.Instance.clickCnt == 1)
-        //          Invoke(nameof(SecondClick), s.source.clip.length + 1f);
+        //    Invoke(nameof(SecondClick), s.source.clip.length + 1f);
         //if (GUIManagerPLY3.Instance.clickCnt == 2)
-        //	Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
+        //    Invoke(nameof(ShowEndCard), s.source.clip.length + 1.75f);
         #endregion
+
 
         #region Ply3
         //if (GUIManagerPLY3.Instance.clickCnt == 1)
@@ -74,8 +82,8 @@ public class AudioManager : MonoBehaviour
         #endregion
 
         #region Ply2 Short
-        if (GUIManager.Instance.clickCnt == 1)
-			Invoke(nameof(ShowEndCard), s.source.clip.length + 13f);
+        //if (GUIManager.Instance.clickCnt == 1)
+			//Invoke(nameof(ShowEndCard), s.source.clip.length + 13f);
             
         #endregion
     }
@@ -83,21 +91,25 @@ public class AudioManager : MonoBehaviour
     void ShowEndCard()
     {
         #region PLy3+Ply4
-        //GUIManagerPLY3.Instance.ShowEndCard1();
+        GUIManagerPLY3.Instance.ShowEndCard1();
         #endregion
 
         #region Ply2
-        GUIManager.Instance.ShowEndCard1();
+        //GUIManager.Instance.ShowEndCard1();
         #endregion
     }
     void SecondClick()
     {
+		#region PLy5
+		GUIManagerPLY3.Instance.SecondStage();
+		#endregion
+		
 		#region PLy3+Ply4
 		//GUIManagerPLY3.Instance.SecondClick();
 		#endregion
 
 		#region Ply2
-		GUIManager.Instance.SecondClick();
+		//GUIManager.Instance.SecondClick();
 		#endregion
 	}
 	public void Stop(string sound)

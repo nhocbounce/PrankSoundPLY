@@ -247,28 +247,28 @@ public class GUIManager : MonoBehaviour
 
 }
 
-[Serializable]
-public class DualObject
-{
-    public GameObject verti, hori;
-    [HideInInspector]
-    public bool curState;
+//[Serializable]
+//public class DualObject
+//{
+//    public GameObject verti, hori;
+//    [HideInInspector]
+//    public bool curState;
 
-    public void InitCurState()
-    {
-        curState = verti.activeSelf;
-    }
-}
-[Serializable]
-public class DualAnimator
-{
-    public Animator verti, hori;
-    [HideInInspector]
-    public bool curState;
+//    public void InitCurState()
+//    {
+//        curState = verti.activeSelf;
+//    }
+//}
+//[Serializable]
+//public class DualAnimator
+//{
+//    public Animator verti, hori;
+//    [HideInInspector]
+//    public bool curState;
 
-    public void Play()
-    {
-        hori.SetBool("Clicked", curState);
-        verti.SetBool("Clicked", curState);
-    }
-}
+//    public void Play()
+//    {
+//        hori.SetBool("Clicked", curState);
+//        verti.SetBool("Clicked", curState);
+//    }
+//}
