@@ -39,7 +39,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     //Object Changed when rotate
     [SerializeField]
-    DualObject canVas, hand, whu, ta,zz, songPan1, songPan2;
+    DualObject canVas, hand, whu, ta,zz, songPan1, songPan2, pauseImg;
 
     [SerializeField]
     Animator verti, hori;
@@ -202,10 +202,8 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     void WakeUp()
     {
-        //videoPlayer.isLooping = false;
         second = true;
         zz.curState = false;
-        //videoPlayer.playbackSpeed = 0.5f;
     }
 
 
@@ -217,7 +215,6 @@ public class GUIManagerPLY3 : MonoBehaviour
             {
                 btns[i].curState = false;
             }
-
         hori.enabled = true;
         verti.enabled = true;
         hand.curState = true;
@@ -228,9 +225,10 @@ public class GUIManagerPLY3 : MonoBehaviour
         second = false;
         ta.curState = true;
         third = true;
-        //videoPlayer.playbackSpeed = 0.25f;
-        //videoPlayer.isLooping = false;
+
+        Invoke(nameof(PauseVid), 2.55f);
     }
+
 
 
     public void SecondClick()
@@ -266,7 +264,6 @@ public class GUIManagerPLY3 : MonoBehaviour
             Analytics.LogEvent("EndCard Shown", 0);
             PanelOnOff.Single(endCard, true);
             AutoStore();
-
         }
     }
     public void ShowEndCard1()
@@ -326,6 +323,7 @@ public class GUIManagerPLY3 : MonoBehaviour
         PanelOnOff.Dual(zz);
         PanelOnOff.Dual(songPan2);
         PanelOnOff.Dual(songPan1);
+        PanelOnOff.Dual(pauseImg);
 
         //DualAnimator
         for (int i = 0; i < btns.Length; i++)
@@ -355,6 +353,11 @@ public class GUIManagerPLY3 : MonoBehaviour
         }
     }
 
+    void PauseVid()
+    {
+        pauseImg.curState = true;
+    }
+
     void InitState()
     {
         //Init State of DualObjects
@@ -364,6 +367,7 @@ public class GUIManagerPLY3 : MonoBehaviour
         zz.InitCurState();
         songPan2.InitCurState();
         songPan1.InitCurState();
+        pauseImg.InitCurState();
     }
 
 }
