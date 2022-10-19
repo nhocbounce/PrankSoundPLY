@@ -35,7 +35,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     //Object Unchanged when rotate
     [SerializeField]
-    GameObject endCard;
+    GameObject endCard, fwVfx;
 
     //Object Changed when rotate
     [SerializeField]
@@ -91,6 +91,8 @@ public class GUIManagerPLY3 : MonoBehaviour
 
         //BGSound
         AudioManager.Instance.Play("BG");
+
+        Invoke(nameof(NotClickEvent), 15f);
     }
 
     //Luna Required
@@ -142,6 +144,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     public void SoundClicked(string soundName)
     {
+        CancelInvoke(nameof(NotClickEvent));
         hori.enabled = false;
         verti.enabled = false;
         hand.curState = false;
@@ -202,6 +205,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     void WakeUp()
     {
+        PanelOnOff.Single(fwVfx, true);
         second = true;
         zz.curState = false;
     }
@@ -209,6 +213,7 @@ public class GUIManagerPLY3 : MonoBehaviour
 
     public void SecondStage()
     {
+        Invoke(nameof(NotClickEvent), 15f);
         ShowEndCard1();
         for (int i = 0; i < btns.Length; i++)
             if (i == clickNum - 1)
@@ -308,6 +313,12 @@ public class GUIManagerPLY3 : MonoBehaviour
         Playable.InstallFullGame();
 
     }
+
+    void NotClickEvent()
+    {
+        FireEvent("Not Clicked");
+    }
+        
 
 
     //Rotate Handler Function
